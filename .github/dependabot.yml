@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-  - package-ecosystem:'gradle'
-    directory: './internaldependencies'
+  - package-ecosystem: 'gradle'
+    directory: 'internaldependencies'
     schedule:
-      interval: "daily"
+      interval: 'daily'
