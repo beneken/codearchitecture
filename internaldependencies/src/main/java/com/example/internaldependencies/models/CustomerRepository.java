@@ -1,4 +1,4 @@
-package com.example.internaldependencies.repositories;
+package com.example.internaldependencies.models;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

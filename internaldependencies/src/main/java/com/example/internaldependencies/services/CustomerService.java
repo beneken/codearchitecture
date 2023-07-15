@@ -1,7 +1,7 @@
 package com.example.internaldependencies.services;
 
-import com.example.internaldependencies.repositories.Customer;
-import com.example.internaldependencies.repositories.CustomerRepository;
+import com.example.internaldependencies.models.Customer;
+import com.example.internaldependencies.models.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

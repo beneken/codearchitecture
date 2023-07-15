@@ -1,4 +1,4 @@
-package com.example.internaldependencies.repositories;
+package com.example.internaldependencies.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
