@@ -2,7 +2,6 @@ package com.example.internaldependencies.swapi.impl;
 
 import com.example.internaldependencies.swapi.Person;
 import com.example.internaldependencies.swapi.StarWars;
-import com.example.internaldependencies.swapi.StarWarsException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,7 @@ public class StarWarsProxy implements StarWars {
                 .build();
     }
 
-    public Optional<Person> findPersonById(Long id) throws StarWarsException{
+    public Optional<Person> findPersonById(Long id) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(new URI(SWAPI_BASEURL + "people/" + id))
@@ -45,11 +44,11 @@ public class StarWarsProxy implements StarWars {
             ObjectMapper mapper = new ObjectMapper();
             Person result = mapper.readValue(response.body(), Person.class);
             return Optional.of(result);
-
+        } catch (InterruptedException x) {
+            Thread.currentThread().interrupt();
         } catch (Exception x) {
             logger.error("Error in finding {}", x.getMessage(), x);
-            throw new StarWarsException(x);
-        }
+       }
         return Optional.empty();
     }
 }
