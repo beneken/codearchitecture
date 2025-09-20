@@ -20,18 +20,18 @@ import java.util.Optional;
 @Validated
 public class InvoiceController {
 
-    private InvoiceService invoiceService;
+    private final InvoiceService invoiceService;
 
     @Autowired
     public InvoiceController(InvoiceService invoiceService) {
         this.invoiceService = invoiceService;
     }
 
-    @Operation(summary = "Erstellen einer neuen Rechnung", description = "Speichert eine neue Rechnung und gibt die InvoiceId zurück.")
+    @Operation(summary = "create a new invoice", description = "creates new invoice.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Rechnung erfolgreich erstellt"),
-            @ApiResponse(responseCode = "400", description = "Ungültige Anfrage", content = @Content),
-            @ApiResponse(responseCode = "409", description = "Rechnung bereits vorhanden", content = @Content),
+            @ApiResponse(responseCode = "201", description = "Invoice created", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Client error", content = @Content),
+            @ApiResponse(responseCode = "409", description = "Id already in use", content = @Content),
     })
     @PostMapping("")
     public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody InvoiceRequest invoice) {

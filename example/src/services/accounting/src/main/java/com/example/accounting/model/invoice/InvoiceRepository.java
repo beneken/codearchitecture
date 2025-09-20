@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
-    List<Invoice> findByIsCheckedIsNull();
     Optional<Invoice> findByInvoiceNumber(String invoiceNumber);
 }

@@ -26,14 +26,6 @@ public class DirectoryScanner {
         this.newDocuments = newDocuments;
     }
 
-    public static void stop() {
-        running = false;
-    }
-
-    public static boolean isRunning() {
-        return running;
-    }
-
     public void processNewFile(Path filePath) {
         try {
             if (filePath.toString().endsWith(".pdf")) {

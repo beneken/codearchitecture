@@ -51,12 +51,6 @@ public class DocumentProcessor {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private SupplierRepository customerRepository;
-
-    @Autowired
-    private InvoiceRepository invoiceRepository;
-
     private void loadBasePrompt() throws JsonProcessingException {
         JsonSchemaGenerator schemaGen = new JsonSchemaGenerator(objectMapper);
         JsonSchema jsonSchema = schemaGen.generateSchema(Invoice.class);

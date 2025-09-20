@@ -68,7 +68,7 @@ public class Configuration implements IConfiguration {
             return Integer.parseInt(value);
         } catch (NumberFormatException e) {
             logger.error("environment variable {} has value {} not an integer", envKey, value);
-            throw new ConfigurationException(String.format(INVALID_PORT_ERROR, value));
+            throw new ConfigurationException(String.format(INVALID_PORT_ERROR, envKey, value));
         }
     }
 

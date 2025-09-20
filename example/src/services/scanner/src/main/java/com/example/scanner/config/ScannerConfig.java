@@ -6,9 +6,9 @@ import com.example.shared.config.IConfiguration;
 import java.nio.file.Path;
 
 public class ScannerConfig {
-    private Path pathToWatchedFolder;
-    private String nameOfDocumentQueue;
-    private Integer maximumFileSizeInMB;
+    private final Path pathToWatchedFolder;
+    private final String nameOfDocumentQueue;
+    private final Integer maximumFileSizeInMB;
 
     public ScannerConfig(IConfiguration config) throws ConfigurationException {
         this.pathToWatchedFolder = config.getPath("PATH_INVOICES");
@@ -19,9 +19,11 @@ public class ScannerConfig {
     public Path getPathToWatchedFolder() {
         return pathToWatchedFolder;
     }
+
     public String getNameOfDocumentQueue() {
         return nameOfDocumentQueue;
     }
+
     public Integer getMaximumFileSizeInMB() {
         return maximumFileSizeInMB;
     }

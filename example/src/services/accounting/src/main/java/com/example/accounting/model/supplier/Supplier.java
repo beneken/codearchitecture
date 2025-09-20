@@ -22,6 +22,7 @@ import java.util.List;
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "supplier_id")
     private Long supplierId;
 
     @NotBlank
@@ -40,7 +41,7 @@ public class Supplier {
     @NotBlank
     private String city;
 
-    @Pattern(regexp = "^$|^\\+49\\s\\d{2,5}\\s\\d{6,12}$", message = "Ungültige Telefonnummer")
+    @Pattern(regexp = "^$|^\\+49\\s\\d{2,5}\\s\\d{6,12}$", message = "Not a phone number")
     private String phone;
 
     @Email

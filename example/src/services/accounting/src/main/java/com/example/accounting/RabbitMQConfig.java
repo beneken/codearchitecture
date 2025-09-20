@@ -11,22 +11,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig  {
     // Hardcoded for simplicity, should be externalized to application.properties
-    private String rabbitMQHost="rabbitmq";
-    private String rabbitMQPort="5672";
-    private String rabbitMQUsername ="guest";
-    private String rabbitMQPassword="guest";
-    private String queueName ="DocumentInputQueue";
+    private final String rabbitMQHost="rabbitmq";
+    private final int rabbitMQPort=5672;
+    private final String rabbitMQUsername ="guest";
+    private final String rabbitMQPassword="guest";
+    private final String queueName ="DocumentInputQueue";
 
     @Bean
     public CachingConnectionFactory connectionFactory() {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(rabbitMQHost);
-        int port = 5672; // Standardport
-        try {
-            port = Integer.parseInt(rabbitMQPort);
-        } catch (NumberFormatException e) {
-        }
-        factory.setPort(port);
+        factory.setPort(rabbitMQPort);
         factory.setUsername(rabbitMQUsername);
         factory.setPassword(rabbitMQPassword);
 

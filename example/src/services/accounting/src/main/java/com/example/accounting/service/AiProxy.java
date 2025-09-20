@@ -5,9 +5,6 @@ import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.models.chat.completions.ChatCompletionCreateParams;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-
 @Service
 public class AiProxy {
     private static final String BASE_URL = "<AI Base URL>";
