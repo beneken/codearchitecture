@@ -11,14 +11,21 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+
 dependencies {
     implementation 'org.slf4j:slf4j-api:2.0.9'
     implementation 'ch.qos.logback:logback-classic:1.5.18'
-    implementation 'org.apache.pdfbox:pdfbox:3.0.4'
+    implementation 'org.apache.pdfbox:pdfbox:3.0.5'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     implementation 'org.jetbrains:annotations:24.0.0'
-    testImplementation 'org.mockito:mockito-core:5.7.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:5.7.0'
+    testImplementation 'org.mockito:mockito-core:5.20.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.20.0'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.awaitility:awaitility:4.3.0'
