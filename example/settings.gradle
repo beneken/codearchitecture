@@ -1,0 +1,6 @@
+rootProject.name = 'example'
+
+include ":src:services:accounting"
+include ":src:services:scanner"
+include ":src:services:archive"
+include "src:services:shared"

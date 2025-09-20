@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'application'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'example.com'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ch.qos.logback:logback-classic:1.5.18'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.mockito:mockito-core:5.7.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.7.0'
+    implementation project(':src:services:shared')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.amqp:spring-rabbit:3.2.5'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8'
+    implementation 'org.postgresql:postgresql:42.6.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8'
+    implementation("com.openai:openai-java:1.5.1")
+    implementation 'com.fasterxml.jackson.module:jackson-module-jsonSchema-jakarta:2.18.4'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.0'
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+application {
+    mainClass = 'com.example.accounting.Main'
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
+    manifest {
+        attributes(
+                'Implementation-Title': 'Accounting Service',
+                'Implementation-Version': version,
+                'Main-Class': application.mainClass.get()
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+tasks {
+    test {
+        useJUnitPlatform()
+        ignoreFailures = true
+        finalizedBy jacocoTestReport
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+
+    }
+}
